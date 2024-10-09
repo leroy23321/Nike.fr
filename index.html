@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phrase Mobile</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+        }
+        #phrase {
+            position: absolute;
+            color: #FFFF00; /* Jaune fluo */
+            font-size: 24px;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div id="phrase">Va te faire enculer sale bâtard</div>
+
+    <script>
+        const phrase = document.getElementById('phrase');
+        let x = Math.random() * window.innerWidth;
+        let y = Math.random() * window.innerHeight;
+        let dx = 2; // Déplacement en x
+        let dy = 2; // Déplacement en y
+
+        function updatePosition() {
+            x += dx;
+            y += dy;
+
+            // Changer de direction si on touche un bord
+            if (x <= 0 || x + phrase.offsetWidth >= window.innerWidth) {
+                dx *= -1;
+            }
+            if (y <= 0 || y + phrase.offsetHeight >= window.innerHeight) {
+                dy *= -1;
+            }
+
+            phrase.style.left = x + 'px';
+            phrase.style.top = y + 'px';
+
+            requestAnimationFrame(updatePosition);
+        }
+
+        updatePosition();
+    </script>
+</body>
+</html>
